@@ -12,12 +12,12 @@ while line:
 f.close()
 
     
-for i in code:
-    match_obj = re.search(r'[^ ]', i)
-    formated_code.append('"' + "\\t"*(int)(match_obj.start()/4) + i[match_obj.start():-1].replace('"', '\\"') + '",')
-
-for i in formated_code:
-    print(i)
+for i in range(len(code)):
+    match_obj = re.search(r'[^ ]', code[i])
+    if i != len(code)-1:
+        formated_code.append('"' + "\\t"*(int)(match_obj.start()/4) + code[i][match_obj.start():-1].replace('"', '\\"') + '",')
+    else:
+        formated_code.append('"' + "\\t"*(int)(match_obj.start()/4) + code[i][match_obj.start():].replace('"', '\\"') + '"')
 
 
 path = './output.txt'
@@ -30,5 +30,5 @@ for i in formated_code:
         f.write('\t\t\t' + i + '\n')
 
 with open(path, mode='a') as f:
-    f.write('\t\t],\n\t\t"description": ""\n\t},')
+    f.write('\t\t],\n\t\t"description": ""\n\t}')
 		
