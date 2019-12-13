@@ -22,6 +22,13 @@ for i in formated_code:
 
 path = './output.txt'
 os.remove(path)
+with open(path, mode='a') as f:
+    f.write('\t"": {\n\t\t"prefix": "",\n\t\t"body": [\n')
+
 for i in formated_code:
     with open(path, mode='a') as f:
-        f.write(i + '\n')
+        f.write('\t\t\t' + i + '\n')
+
+with open(path, mode='a') as f:
+    f.write('\t\t],\n\t\t"description": ""\n\t},')
+		
